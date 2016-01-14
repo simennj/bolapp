@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center_horizontal"
+    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:scaleType="fitXY"
+    android:src="@android:drawable/divider_horizontal_textfield"
+    android:paddingBottom="4dp"
+    android:paddingTop="2dp"
+    android:layout_marginTop="4dp"
+    tools:showIn="@layout/filter_layout"/>
