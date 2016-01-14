@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import retrofit2.Callback;
 import retrofit2.Response;
 
@@ -32,6 +33,9 @@ public class MainActivity extends ActionBarActivity {
     ActionBarDrawerToggle mDrawerToggle;
 
     List<Product> allItems = new ArrayList<>();
+    Filter filter = new Filter();
+
+    TextView navnfilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
 
         itemsView = (RecyclerView) findViewById(R.id.Items);
 
-        allItems.add(new Product(1, "navn", "beskrivelse", "kategori", "produsent", "land", 99.99, 33, 4.7, 12.34, "url"));
+        allItems.add(new Product(1, "navn", "beskrivelse", Kategori.alkoholfritt, "produsent", "land", 9.99, 100, 99.99, 0.01, "url"));
 
         itemsAdapter = new BolAdapter(allItems);
         generator = new ProductGenerator();
@@ -93,6 +97,7 @@ public class MainActivity extends ActionBarActivity {
         Drawer.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
+        navnfilter = (TextView) findViewById(R.id.varenavnFilter);
     }
 
 
@@ -108,6 +113,12 @@ public class MainActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+        if (id == R.id.filter) {
+            filter.navn = navnfilter.getText().toString();
+            System.out.println(filter.navn);
+            itemsAdapter.filter(filter);
+        }
 
         if (id == R.id.action_settings) {
             return true;

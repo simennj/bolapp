@@ -60,9 +60,5 @@ public class ProductGenerator {
         ProductGenerator productGenerator = new ProductGenerator();
         Call<List<Product>> call = productGenerator.polguide.pages();
         List<Product> page = call.execute().body();
-        for (Product product : page) {
-            System.out.println(product);
-        }
-
     }
 }

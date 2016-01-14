@@ -42,11 +42,18 @@ public class BolAdapter extends RecyclerView.Adapter<BolAdapter.ItemViewHolder> 
     }
 
     public void filter(Filter filter) {
-
+        items.clear();
+        notifyDataSetChanged();
+        for (Product item : allItems) {
+            if (filter.accepted(item)){
+                items.add(item);
+            }
+        }
     }
 
     public void setItems(List<Product> items) {
-        this.items = items;
+        this.allItems = items;
+        filter(new Filter());
     }
 
     @Override
@@ -59,7 +66,7 @@ public class BolAdapter extends RecyclerView.Adapter<BolAdapter.ItemViewHolder> 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
         holder.navn.setText(items.get(position).navn);
-        holder.kategori.setText(items.get(position).kategori);
+        holder.kategori.setText(items.get(position).kategori.toString());
         holder.pris.setText(String.format("%.2fkr", items.get(position).pris));
         holder.volum.setText(String.format("%.2fcl", items.get(position).volum));
         holder.alkohol.setText(String.format("%.2f%%", items.get(position).alkohol));
