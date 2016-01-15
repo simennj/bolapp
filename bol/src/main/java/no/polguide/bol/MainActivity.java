@@ -1,16 +1,20 @@
 package no.polguide.bol;
 
+import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import com.appyvet.rangebar.RangeBar;
 import retrofit2.Callback;
 import retrofit2.Response;
 
@@ -22,20 +26,14 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity {
 
     ProductGenerator generator;
-
-    private Toolbar toolbar;
-
     RecyclerView itemsView;
     BolAdapter itemsAdapter;
     LinearLayoutManager itemsLayoutManager;
     DrawerLayout Drawer;
-
     ActionBarDrawerToggle mDrawerToggle;
-
     List<Product> allItems = new ArrayList<>();
     Filter filter = new Filter();
-
-    TextView navnfilter;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,13 +89,35 @@ public class MainActivity extends ActionBarActivity {
                 super.onDrawerClosed(drawerView);
             }
 
-
-
         };
         Drawer.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
-        navnfilter = (TextView) findViewById(R.id.varenavnFilter);
+        ((TextView) findViewById(R.id.varenavnFilter)).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter.navn = s.toString().toLowerCase();
+                itemsAdapter.filter(filter);
+            }
+        });
+        ((RangeBar) findViewById(R.id.prisFilter)).setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
+            @Override
+            public void onRangeChangeListener(RangeBar rangeBar, int min, int max, String s_min, String s_max) {
+                filter.pris_min = min * 10;
+                filter.pris_max = max * 10;
+                itemsAdapter.filter(filter);
+            }
+        });
     }
 
 
@@ -114,16 +134,15 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.filter) {
-            filter.navn = navnfilter.getText().toString();
-            System.out.println(filter.navn);
+        if (id == R.id.refresh) {
             itemsAdapter.filter(filter);
-        }
-
-        if (id == R.id.action_settings) {
+            return true;
+        } else if (id == R.id.filter) {
+            Drawer.openDrawer(Gravity.RIGHT);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
 }

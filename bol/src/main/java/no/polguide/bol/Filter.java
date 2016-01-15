@@ -19,11 +19,11 @@ public class Filter {
     public double alkoholpris_max = 0;
 
     public boolean navn(String navn) {
-        return navn.contains(this.navn);
+        return navn.toLowerCase().contains(this.navn);
     }
 
     public boolean beskrivelse(String beskrivelse) {
-        return beskrivelse.contains(this.beskrivelse);
+        return beskrivelse.toLowerCase().contains(this.beskrivelse);
     }
 
     public boolean kategori(Kategori kategori) {
@@ -31,11 +31,11 @@ public class Filter {
     }
 
     public boolean produsent(String produsent) {
-        return produsent.contains(this.produsent);
+        return produsent.toLowerCase().contains(this.produsent);
     }
 
     public boolean land(String land) {
-        return land.contains(this.land);
+        return land.toLowerCase().contains(this.land);
     }
 
     public boolean pris(double pris) {

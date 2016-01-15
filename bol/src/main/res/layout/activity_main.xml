@@ -1,25 +1,26 @@
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                        android:id="@+id/DrawerLayout"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:elevation="7dp">
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/DrawerLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="7dp">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:tools="http://schemas.android.com/tools"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
 
-                  tools:context=".MainActivity"
-                  android:orientation="vertical">
+                  android:orientation="vertical"
+                  tools:context=".MainActivity">
 
         <include
             android:id="@+id/tool_bar"
             layout="@layout/tool_bar"></include>
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/Items"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/Items">
+            android:layout_height="fill_parent">
 
         </android.support.v7.widget.RecyclerView>
 
@@ -27,55 +28,55 @@
 
     <LinearLayout
         android:id="@+id/FilterView"
-        android:layout_width="320dp"
+        android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="right"
         android:background="#ffffff"
-        android:orientation="vertical"
-        android:clickable="true">
+        android:clickable="true"
+        android:orientation="vertical">
 
         <TextView
-            android:text="@string/navn"
             android:id="@+id/varenavnLabel"
             style="@style/FilterLabel"
+            android:text="@string/navn"
             />
 
         <EditText
             android:id="@+id/varenavnFilter"
-            android:inputType="text"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
 
         <include layout="@layout/filter_divider"/>
 
         <TextView
-            android:text="@string/kategori"
             android:id="@+id/varetypeLabel"
-            style="@style/FilterLabel"/>
+            style="@style/FilterLabel"
+            android:text="@string/kategori"/>
 
         <EditText
             android:id="@+id/varetypeFilter"
-            android:inputType="text"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
 
         <include layout="@layout/filter_divider"/>
 
         <TextView
-            android:text="@string/pris"
             android:id="@+id/prisLabel"
-            style="@style/FilterLabel"/>
+            style="@style/FilterLabel"
+            android:text="@string/pris"/>
 
         <com.appyvet.rangebar.RangeBar
+            android:id="@+id/prisFilter"
             xmlns:custom="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/rangebar"
-            custom:tickStart="10"
-            custom:tickInterval="10"
-            custom:tickEnd="1200"
+            android:layout_width="fill_parent"
+            android:layout_height="72dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_height="72dp"
-            android:layout_width="fill_parent"/>
+            custom:tickEnd="1200"
+            custom:tickInterval="10"
+            custom:tickStart="10"/>
 
         <include layout="@layout/filter_divider"/>
 
