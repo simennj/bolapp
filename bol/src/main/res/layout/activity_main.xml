@@ -26,60 +26,125 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/FilterView"
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="right"
         android:background="#ffffff"
-        android:clickable="true"
-        android:orientation="vertical">
+        android:clickable="true">
 
-        <TextView
-            android:id="@+id/varenavnLabel"
-            style="@style/FilterLabel"
-            android:text="@string/navn"
-            />
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/varenavnFilter"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <include layout="@layout/filter_divider"/>
+                <TextView
+                    android:id="@+id/varenavnLabel"
+                    style="@style/FilterLabel"
+                    android:text="@string/navn"
+                    />
 
-        <TextView
-            android:id="@+id/varetypeLabel"
-            style="@style/FilterLabel"
-            android:text="@string/kategori"/>
+                <EditText
+                    android:id="@+id/varenavnFilter"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
 
-        <EditText
-            android:id="@+id/varetypeFilter"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"/>
+                <include layout="@layout/filter_divider"/>
 
-        <include layout="@layout/filter_divider"/>
+                <TextView
+                    android:id="@+id/varetypeLabel"
+                    style="@style/FilterLabel"
+                    android:text="@string/kategori"/>
 
-        <TextView
-            android:id="@+id/prisLabel"
-            style="@style/FilterLabel"
-            android:text="@string/pris"/>
+                <EditText
+                    android:id="@+id/varetypeFilter"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
 
-        <com.appyvet.rangebar.RangeBar
-            android:id="@+id/prisFilter"
-            xmlns:custom="http://schemas.android.com/apk/res-auto"
-            android:layout_width="fill_parent"
-            android:layout_height="72dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            custom:tickEnd="1200"
-            custom:tickInterval="10"
-            custom:tickStart="10"/>
+                <include layout="@layout/filter_divider"/>
 
-        <include layout="@layout/filter_divider"/>
+                <TextView
+                    android:id="@+id/prisLabel"
+                    style="@style/FilterLabel"
+                    android:text="@string/pris"/>
 
-    </LinearLayout>
+                <com.appyvet.rangebar.RangeBar
+                    android:id="@+id/prisFilter"
+                    xmlns:custom="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    custom:tickEnd="1200"
+                    custom:tickInterval="10"
+                    custom:tickStart="10"/>
+
+                <include layout="@layout/filter_divider"/>
+
+                <TextView
+                    android:id="@+id/volumLabel"
+                    style="@style/FilterLabel"
+                    android:text="@string/volum"/>
+
+                <com.appyvet.rangebar.RangeBar
+                    android:id="@+id/volumFilter"
+                    xmlns:custom="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    custom:tickEnd="300"
+                    custom:tickInterval="5"
+                    custom:tickStart="5"/>
+
+                <include layout="@layout/filter_divider"/>
+
+                <TextView
+                    android:id="@+id/alkoholLabel"
+                    style="@style/FilterLabel"
+                    android:text="@string/alkohol"/>
+
+                <com.appyvet.rangebar.RangeBar
+                    android:id="@+id/alkoholFilter"
+                    xmlns:custom="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    custom:tickEnd="60"
+                    custom:tickInterval="1"
+                    custom:tickStart="0"/>
+
+                <include layout="@layout/filter_divider"/>
+
+                <TextView
+                    android:id="@+id/alkoholprisLabel"
+                    style="@style/FilterLabel"
+                    android:text="@string/alkoholpris"/>
+
+                <com.appyvet.rangebar.RangeBar
+                    android:id="@+id/alkoholprisFilter"
+                    xmlns:custom="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    custom:tickEnd="30"
+                    custom:tickInterval="1"
+                    custom:tickStart="3"/>
+
+                <include layout="@layout/filter_divider"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>

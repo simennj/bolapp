@@ -118,6 +118,30 @@ public class MainActivity extends ActionBarActivity {
                 itemsAdapter.filter(filter);
             }
         });
+        ((RangeBar) findViewById(R.id.volumFilter)).setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
+            @Override
+            public void onRangeChangeListener(RangeBar rangeBar, int min, int max, String s_min, String s_max) {
+                filter.volum_min = min * 5;
+                filter.volum_max = max * 5;
+                itemsAdapter.filter(filter);
+            }
+        });
+        ((RangeBar) findViewById(R.id.alkoholFilter)).setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
+            @Override
+            public void onRangeChangeListener(RangeBar rangeBar, int min, int max, String s_min, String s_max) {
+                filter.alkohol_min = min;
+                filter.alkohol_max = max;
+                itemsAdapter.filter(filter);
+            }
+        });
+        ((RangeBar) findViewById(R.id.alkoholprisFilter)).setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
+            @Override
+            public void onRangeChangeListener(RangeBar rangeBar, int min, int max, String s_min, String s_max) {
+                filter.alkoholpris_min = min * 1;
+                filter.alkoholpris_max = max * 1;
+                itemsAdapter.filter(filter);
+            }
+        });
     }
 
 

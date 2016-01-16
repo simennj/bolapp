@@ -21,7 +21,7 @@
     <string name="refresh">oppdater</string>
 
     <string name="navn">Varenavn</string>
-    <string name="kategori">Varetype</string>
+    <string name="kategori">Kategori</string>
     <string name="pris">Pris</string>
     <string name="volum">Volum</string>
     <string name="alkohol">Alkohol</string>
