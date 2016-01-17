@@ -5,31 +5,31 @@ import com.google.gson.annotations.SerializedName;
 public enum Kategori {
 
     @SerializedName("ol")
-    ol("ol"),
+    ol("Øl"),
 
     @SerializedName("sprit")
-    sprit("sprit"),
+    sprit("Sprit"),
 
     @SerializedName("aperitif-dessert")
-    aperitif_dessert("aperitif-dessert"),
+    aperitif_dessert("Diverse"),
 
     @SerializedName("mousserande-viner")
-    mousserande_viner("mousserande-viner"),
+    mousserande_viner("Musserende vin"),
 
     @SerializedName("roda-viner")
-    roda_viner("roda-viner"),
+    roda_viner("Rødvin"),
 
     @SerializedName("cider-och-blanddrycker")
-    cider_och_blanddrycker("cider-och-blanddrycker"),
+    cider_och_blanddrycker("Cider og Blandedrikker"),
 
     @SerializedName("vita-viner")
-    vita_viner("vita-viner"),
+    vita_viner("Hvitvin"),
 
     @SerializedName("alkoholfritt")
-    alkoholfritt("alkoholfritt"),
+    alkoholfritt("Alkoholfritt"),
 
     @SerializedName("roseviner")
-    roseviner("roseviner");
+    roseviner("Rosévin");
 
     private String kategori;
 

@@ -5,6 +5,26 @@
     android:layout_height="match_parent"
     android:elevation="7dp">
 
+
+    <RelativeLayout
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="#ffffff"
+        android:clickable="true">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:tools="http://schemas.android.com/tools"
                   android:layout_width="match_parent"
@@ -16,6 +36,11 @@
         <include
             android:id="@+id/tool_bar"
             layout="@layout/tool_bar"></include>
+
+        <Spinner
+            android:id="@+id/sortering"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/Items"
@@ -45,6 +70,21 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/kategoriLabel"
+                    style="@style/FilterLabel"
+                    android:text="@string/kategori"
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/kategori"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <include layout="@layout/filter_divider"/>
+
+                <TextView
                     android:id="@+id/varenavnLabel"
                     style="@style/FilterLabel"
                     android:text="@string/navn"
@@ -65,6 +105,32 @@
 
                 <EditText
                     android:id="@+id/varetypeFilter"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
+
+                <include layout="@layout/filter_divider"/>
+
+                <TextView
+                    android:id="@+id/landLabel"
+                    style="@style/FilterLabel"
+                    android:text="@string/land"/>
+
+                <EditText
+                    android:id="@+id/landFilter"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
+
+                <include layout="@layout/filter_divider"/>
+
+                <TextView
+                    android:id="@+id/produsentLabel"
+                    style="@style/FilterLabel"
+                    android:text="@string/produsent"/>
+
+                <EditText
+                    android:id="@+id/produsentFilter"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"/>

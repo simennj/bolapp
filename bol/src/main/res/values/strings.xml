@@ -26,5 +26,7 @@
     <string name="volum">Volum</string>
     <string name="alkohol">Alkohol</string>
     <string name="alkoholpris">Alkoholpris</string>
+    <string name="land">Land</string>
+    <string name="produsent">Produsent</string>
 
 </resources>

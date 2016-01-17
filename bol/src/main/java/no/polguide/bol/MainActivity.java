@@ -9,12 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import com.appyvet.rangebar.RangeBar;
+import com.bignerdranch.android.multiselector.MultiSelector;
+import com.bignerdranch.android.multiselector.SwappingHolder;
 import retrofit2.Callback;
 import retrofit2.Response;
 
@@ -34,6 +34,8 @@ public class MainActivity extends ActionBarActivity {
     List<Product> allItems = new ArrayList<>();
     Filter filter = new Filter();
     private Toolbar toolbar;
+    private MultiSelector kategoriselector = new MultiSelector();
+    private Kategori[] kategorier = new Kategori[9];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +79,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         Drawer = (DrawerLayout) findViewById(R.id.DrawerLayout);
-        mDrawerToggle = new ActionBarDrawerToggle(this,Drawer,toolbar,R.string.openDrawer,R.string.closeDrawer){
+        mDrawerToggle = new ActionBarDrawerToggle(this, Drawer, toolbar, R.string.openDrawer, R.string.closeDrawer) {
 
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -107,6 +109,40 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 filter.navn = s.toString().toLowerCase();
+                itemsAdapter.filter(filter);
+            }
+        });
+        ((TextView) findViewById(R.id.landFilter)).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter.land = s.toString().toLowerCase();
+                itemsAdapter.filter(filter);
+            }
+        });
+        ((TextView) findViewById(R.id.varenavnFilter)).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter.produsent = s.toString().toLowerCase();
                 itemsAdapter.filter(filter);
             }
         });
@@ -142,6 +178,21 @@ public class MainActivity extends ActionBarActivity {
                 itemsAdapter.filter(filter);
             }
         });
+
+        kategorier[0] = Kategori.alkoholfritt;
+        kategorier[1] = Kategori.ol;
+        kategorier[2] = Kategori.aperitif_dessert;
+        kategorier[3] = Kategori.cider_och_blanddrycker;
+        kategorier[4] = Kategori.mousserande_viner;
+        kategorier[5] = Kategori.roda_viner;
+        kategorier[6] = Kategori.roseviner;
+        kategorier[7] = Kategori.sprit;
+        kategorier[8] = Kategori.vita_viner;
+
+        KategoriAdapter kategoriAdapter = new KategoriAdapter();
+        RecyclerView kategoriView = (RecyclerView) findViewById(R.id.kategori);
+        kategoriView.setAdapter(kategoriAdapter);
+        kategoriView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 
@@ -169,4 +220,57 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private class KategoriHolder extends SwappingHolder
+            implements View.OnClickListener {
+        private final CheckBox mSolvedCheckBox;
+        private Kategori kategori;
+
+        public KategoriHolder(View itemView, Kategori kategori) {
+            super(itemView, kategoriselector);
+            kategoriselector.setSelectable(true);
+            mSolvedCheckBox = (CheckBox) itemView.findViewById(R.id.solvedCheckBox);
+            itemView.setOnClickListener(this);
+        }
+
+        public void bindKategori(Kategori kategori) {
+            this.kategori = kategori;
+            mSolvedCheckBox.setText(kategori.toString());
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mSolvedCheckBox.isChecked()) {
+                filter.kategorier.remove(this.kategori);
+            } else {
+                filter.kategorier.add(this.kategori);
+            }
+            if (kategoriselector.tapSelection(this)) {
+                System.out.println("add");
+            } else {
+                System.out.println("remove");
+
+            }
+            mSolvedCheckBox.setChecked(filter.kategorier.contains(this.kategori));
+            itemsAdapter.filter(filter);
+        }
+    }
+
+    private class KategoriAdapter extends RecyclerView.Adapter<KategoriHolder> {
+
+        @Override
+        public KategoriHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new KategoriHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.kategori, parent, false), Kategori.alkoholfritt);
+        }
+
+        @Override
+        public void onBindViewHolder(KategoriHolder holder, int position) {
+            Kategori kategori = kategorier[position];
+            holder.bindKategori(kategori);
+        }
+
+        @Override
+        public int getItemCount() {
+            return 9;
+        }
+    }
 }
